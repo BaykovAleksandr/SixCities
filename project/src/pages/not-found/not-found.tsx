@@ -1,7 +1,3 @@
-const NotFound = (): JSX.Element => (
-  <>
-  File not Found 404
-  </>
-);
+const NotFound = (): JSX.Element => <div>Not Found 404</div>;
 
-export {NotFound};
+export default NotFound;
