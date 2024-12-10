@@ -26,7 +26,7 @@ const App = ({ city, offers, reviews }: AppProps): JSX.Element => (
         path={AppRoute.Favorites}
         element={
           <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-            <Favorites offers={[]} />
+            <Favorites />
           </PrivateRoute>
         }
       />
