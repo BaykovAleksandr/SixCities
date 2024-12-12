@@ -52,7 +52,7 @@ const CardList = (): JSX.Element => {
           </ul>
         </form>
         <div className="cities__places-list places__list tabs__content">
-          {offers.map((offer: JSX.IntrinsicAttributes & Offer & { onMouseMove?: (id: number) => void; onMouseLeave?: () => void; place?: "cities" | "near-places"; }) => (
+          {offers.map((offer: JSX.IntrinsicAttributes & Offer & { onMouseMove?: (id: number) => void; onMouseLeave?: () => void; place?: 'cities' | 'near-places'; }) => (
             <Card
               key={offer.id}
               {...offer}
