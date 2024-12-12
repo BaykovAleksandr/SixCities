@@ -22,3 +22,41 @@ export enum AuthorizationStatus {
     NoAuth = 'NO_AUTH',
     Unknown = 'UNKNOWN',
 }
+
+type CityLocation = {
+  [key in CityName]: Location
+}
+
+export const CityCenter: CityLocation = {
+  'Paris': {
+    latitude: 48.85661,
+    longitude: 2.351499,
+    zoom: 10
+  },
+  'Cologne': {
+    latitude: 50.938361,
+    longitude: 6.959974,
+    zoom: 10
+  },
+  'Brussels': {
+    latitude: 50.846557,
+    longitude: 4.351697,
+    zoom: 10
+  },
+  'Amsterdam': {
+    latitude: 52.37454,
+    longitude: 4.897976,
+    zoom: 10
+  },
+  'Hamburg': {
+    latitude: 53.550341,
+    longitude: 10.000654,
+    zoom: 10
+  },
+  'Dusseldorf': {
+    latitude: 51.225402,
+    longitude: 6.776314,
+    zoom: 10
+  },
+};
+
