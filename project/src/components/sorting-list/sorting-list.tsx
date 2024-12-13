@@ -3,7 +3,6 @@ import type { SortName } from '../../types/types';
 import { useState } from 'react';
 
 import { Sorting } from '../../const';
-import { type } from 'os';
 
 
 type SortingListProps = {
@@ -41,7 +40,7 @@ const SortingList = ({
       </span>
       {isOpened && (
         <ul className="places__options places__options--custom places__options--opened">
-          {(Object.entries(Sorting) as unknown as [SortName, Sorting][]).map(([name, title]) => (
+          {(Object.entries(Sorting) as [SortName, Sorting][]).map(([name, title]) => (
             <li
               key={name}
               className={`places__option${name === activeSorting ? ' places__option--active' : ''}`}

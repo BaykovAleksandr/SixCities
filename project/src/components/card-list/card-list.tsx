@@ -39,8 +39,8 @@ const CardList = (): JSX.Element => {
             <Card
               key={offer.id}
               {...offer}
-              onMouseEnter={handleCardMouseEnter}
               onMouseLeave={handleCardMouseLeave}
+              onMouseEnter={handleCardMouseEnter}
             />
           ))}
         </div>
