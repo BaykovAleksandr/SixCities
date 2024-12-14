@@ -13,11 +13,11 @@ export const Action = {
 export const setCity = createAction<CityName>(Action.SET_CITY);
 export const setSorting = createAction<SortName>(Action.SET_SORTING);
 
-export const fetchOffers = createAsyncThunk(Action.FETCH_OFFERS, async (_, thunkAPI) => {
-  const axios = thunkAPI.extra as AxiosInstance;
-  const { data } = await axios.get<Offer[]>(ApiRoute.Offers);
+export const fetchOffers = createAsyncThunk<Offer[], undefined, { extra: AxiosInstance }>(
+  Action.FETCH_OFFERS,
+  async (_, { extra: api }) => {
+    const { data } = await api.get<Offer[]>(ApiRoute.Offers);
 
-  return data;
-});
-
+    return data;
+  });
 
