@@ -8,18 +8,19 @@ import { Comprator } from '../../const';
 import Card from '../card/card';
 import Map from '../map/map';
 import SortingList from '../sorting-list/sorting-list';
+import Spinner from '../spinner/spinner';
 
 const CardList = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const activeSorting = useAppSelector((state) => state.sorting);
   const activeCity = useAppSelector((state) => state.city);
+  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
   const offers = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.city.name).sort(Comprator[state.sorting]));
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
 
   const handleCardMouseMove = (id: number) => {
     setActiveOffer(id);
   };
-
 
   const handleCardMouseLeave = () => {
     setActiveOffer(null);
@@ -28,6 +29,10 @@ const CardList = (): JSX.Element => {
   const onSortingChange = (name: SortName) => {
     dispatch(setSorting(name));
   };
+
+  if (isOffersLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
@@ -40,8 +45,8 @@ const CardList = (): JSX.Element => {
             <Card
               key={offer.id}
               {...offer}
-              onMouseLeave={handleCardMouseLeave}
               onMouseMove={handleCardMouseMove}
+              onMouseLeave={handleCardMouseLeave}
             />
           ))}
         </div>
