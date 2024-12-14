@@ -1,19 +1,38 @@
-import { Navigate } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { useAppSelector } from '../../hooks';
+import type { Comment } from '../../types/types';
 
-type PrivateRouteProps = {
-  children: JSX.Element;
-}
+import { formatDate, getStarsWidth } from '../../utils';
 
-const PrivateRoute = ({ children }: PrivateRouteProps): JSX.Element => {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+const Review = ({ comment, date, rating, user }: Comment) => {
+  const { name, avatarUrl } = user;
 
   return (
-    authorizationStatus === AuthorizationStatus.Auth
-      ? children
-      : <Navigate to={AppRoute.Login} />
+    <li className="reviews__item">
+      <div className="reviews__user user">
+        <div className="reviews__avatar-wrapper user__avatar-wrapper">
+          <img className="reviews__avatar user__avatar" src={avatarUrl} width={54} height={54} alt="Reviews avatar" />
+        </div>
+        <span className="reviews__user-name">
+          {name}
+        </span>
+      </div>
+      <div className="reviews__info">
+        <div className="reviews__rating rating">
+          <div className="reviews__stars rating__stars">
+            <span
+              style={{
+                width: getStarsWidth(rating)
+              }}
+            />
+            <span className="visually-hidden">Rating</span>
+          </div>
+        </div>
+        <p className="reviews__text">
+          {comment}
+        </p>
+        <time className="reviews__time" dateTime={date}>{formatDate(date)}</time>
+      </div>
+    </li>
   );
 };
 
-export default PrivateRoute;
+export default Review;
