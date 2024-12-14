@@ -18,7 +18,7 @@ const CardList = (): JSX.Element => {
   const offers = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.city.name).sort(Comprator[state.sorting]));
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
 
-  const handleCardMouseMove = (id: number) => {
+  const handleCardMouseEnter = (id: number) => {
     setActiveOffer(id);
   };
 
@@ -45,7 +45,7 @@ const CardList = (): JSX.Element => {
             <Card
               key={offer.id}
               {...offer}
-              onMouseMove={handleCardMouseMove}
+              onMouseEnter={handleCardMouseEnter}
               onMouseLeave={handleCardMouseLeave}
             />
           ))}

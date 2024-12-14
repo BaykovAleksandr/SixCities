@@ -1,10 +1,12 @@
 import type { Offer } from '../../types/types';
 
+import { Link } from 'react-router-dom';
+
 import { AppRoute } from '../../const';
 import { getStarsWidth } from '../../utils';
 
 type CardProps = Offer & {
-  onMouseMove?: (id: number) => void;
+  onMouseEnter?: (id: number) => void;
   onMouseLeave?: () => void;
   place?: 'cities' | 'favorites' | 'near-places';
 };
@@ -19,17 +21,17 @@ const Card = ({
   previewImage,
   type,
   place = 'cities',
-  onMouseMove = () => void 0,
+  onMouseEnter = () => void 0,
   onMouseLeave = () => void 0,
 }: CardProps): JSX.Element => {
-  const handleMouseMove = () => {
-    onMouseMove(id);
+  const handleMouseEnter = () => {
+    onMouseEnter(id);
   };
 
   return (
     <article
       className={`${place}__card place-card`}
-      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       {isPremium && (
@@ -77,7 +79,7 @@ const Card = ({
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href={`${AppRoute.Property}/${id}`}>{title}</a>
+          <Link to={`${AppRoute.Property}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
