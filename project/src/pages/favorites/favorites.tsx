@@ -1,18 +1,14 @@
 import Card from '../../components/card/card';
+import Spinner from '../../components/spinner/spinner';
+import { useAppSelector } from '../../hooks';
+import { getFavoriteOffers, getIsFavoriteOffersLoading } from '../../store/site-data/selectors';
 import type { Offer } from '../../types/types';
 
-type FavoritesProps = {
-  offers: Offer[]
-}
+const Favorites = (): JSX.Element => {
+  const isFavoriteOffersLoading = useAppSelector(getIsFavoriteOffersLoading);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
 
-// [{
-//   city: 'Amsterdam',
-//   offers: []
-// }]
-
-
-const Favorites = ({ offers }: FavoritesProps): JSX.Element => {
-  const groupedOffersByCity = offers.reduce<{ [key: string ]: Offer[] }>((acc, curr) => {
+  const groupedOffersByCity = favoriteOffers.reduce<{ [key: string ]: Offer[] }>((acc, curr) => {
     if (curr.isFavorite) {
       const city = curr.city.name;
 
@@ -26,6 +22,9 @@ const Favorites = ({ offers }: FavoritesProps): JSX.Element => {
     return acc;
   }, {});
 
+  if (isFavoriteOffersLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="page">
@@ -40,7 +39,7 @@ const Favorites = ({ offers }: FavoritesProps): JSX.Element => {
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="/#">
+                  <a className="header__nav-link header__nav-link--profile" href="#">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
                     <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
@@ -48,7 +47,7 @@ const Favorites = ({ offers }: FavoritesProps): JSX.Element => {
                   </a>
                 </li>
                 <li className="header__nav-item">
-                  <a className="header__nav-link" href="/#">
+                  <a className="header__nav-link" href="#">
                     <span className="header__signout">Sign out</span>
                   </a>
                 </li>
@@ -66,7 +65,7 @@ const Favorites = ({ offers }: FavoritesProps): JSX.Element => {
                 <li className="favorites__locations-items" key={city}>
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
-                      <a className="locations__item-link" href="/#">
+                      <a className="locations__item-link" href="#">
                         <span>{city}</span>
                       </a>
                     </div>
