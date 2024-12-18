@@ -9,8 +9,7 @@ const user: User = {
   name: 'Max',
   avatarUrl: 'img/user-1.jpg',
   isPro: false,
-  email: 'max@gmail.com',
-  //token: ''
+  email: 'max@gmail.com'
 };
 
 const offers: Offer[] = [
